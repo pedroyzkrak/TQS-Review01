@@ -114,5 +114,30 @@ public class Conjunto<T> {
             }
         }
         return intersecao;
-    }    
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Conjunto<?> other = (Conjunto<?>) obj;
+        
+        if (!Arrays.deepEquals(this.elements, other.elements))
+            return false;
+        
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Arrays.deepHashCode(this.elements);
+        return hash;
+    }
+
+    
 }
