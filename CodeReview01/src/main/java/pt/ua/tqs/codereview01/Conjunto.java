@@ -126,10 +126,7 @@ public class Conjunto<T> {
             return false;
         final Conjunto<?> other = (Conjunto<?>) obj;
         
-        if (!Arrays.deepEquals(this.elements, other.elements))
-            return false;
-        
-        return true;
+        return Arrays.deepEquals(this.elements, other.elements);
     }
 
     @Override
