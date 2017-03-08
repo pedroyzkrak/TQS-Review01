@@ -1,45 +1,43 @@
 package pt.ua.tqs.codereview01;
 
+import java.util.Arrays;
+
 /**
  * @author Pedro
+ * @param <T>
  *
  */
 public class Conjunto<T> {
 
-    private T[] numeros;
-    private int cont;
+    private T[] elements;
+    private int counter;
 
-    @SuppressWarnings("unchecked")
     public Conjunto() {
-        numeros = (T[]) new Object[10];
-        cont = 0;
+        elements = (T[]) new Object[10];
+        counter = 0;
     }
 
-    @SuppressWarnings("unchecked")
     public void insert(T n) {
         if (!contains(n)) {
-            if (cont == numeros.length) {
-                T[] numeroz = numeros;
-                numeros = (T[]) new Object[numeroz.length + 10];
-                for (int i = 0; i < numeroz.length; i++) {
-                    numeros[i] = numeroz[i];
-                }
+            if (counter == elements.length) {
+                T[] newElements = elements;
+                elements = (T[]) new Object[newElements.length + 10];
+                System.arraycopy(newElements, 0, elements, 0, newElements.length);
             }
-            numeros[cont] = n;
-            cont++;
+            elements[counter] = n;
+            counter++;
         }
 
     }
 
-    @SuppressWarnings("unchecked")
     public void empty() {
-        numeros = (T[]) new Object[10];
-        cont = 0;
+        elements = (T[]) new Object[10];
+        counter = 0;
     }
 
     public boolean contains(T n) {
-        for (int i = 0; i < cont; i++) {
-            if (numeros[i] == n) {
+        for (int i = 0; i < counter; i++) {
+            if (elements[i] == n) {
                 return true;
             }
         }
@@ -49,58 +47,58 @@ public class Conjunto<T> {
     public void remove(T n) {
         int pos = -1;
         if (contains(n)) {
-            for (int i = 0; i < cont; i++) {
-                if (n == numeros[i]) {
+            for (int i = 0; i < counter; i++) {
+                if (n == elements[i]) {
                     pos = i;
                     break;
                 }
             }
         }
         if (pos != -1) {
-            for (int k = pos; k < cont - 1; k++) {
-                numeros[k] = numeros[k + 1];
+            for (int k = pos; k < counter - 1; k++) {
+                elements[k] = elements[k + 1];
             }
         }
-        cont--;
+        counter--;
     }
 
     @Override
     public String toString() {
         StringBuilder strB = new StringBuilder();
-        for (int i = 0; i < cont; i++) {
-            strB.append(numeros[i]);
+        for (int i = 0; i < counter; i++) {
+            strB.append(elements[i]);
             strB.append(" ");
         }
         return strB.toString();
     }
 
     public int size() {
-        return cont;
+        return counter;
     }
 
     public Conjunto<T> unir(Conjunto<T> add) {
         Conjunto<T> uniao = new Conjunto<>();
 
-        for (int i = 0; i < cont; i++) {
-            uniao.insert(numeros[i]);
+        for (int i = 0; i < counter; i++) {
+            uniao.insert(elements[i]);
         }
         for (int k = 0; k < add.size(); k++) {
-            uniao.insert(add.numeros[k]);
+            uniao.insert(add.elements[k]);
         }
         return uniao;
     }
 
     public Conjunto<T> subtrair(Conjunto<T> dif) {
         Conjunto<T> diferenca = new Conjunto<>();
-        for (int i = 0; i < cont; i++) {
+        for (int i = 0; i < counter; i++) {
             int count = 0;
             for (int k = 0; k < dif.size(); k++) {
-                if (numeros[i] == dif.numeros[k]) {
+                if (elements[i] == dif.elements[k]) {
                     count++;
                 }
             }
             if (count == 0) {
-                diferenca.insert(numeros[i]);
+                diferenca.insert(elements[i]);
             }
         }
         return diferenca;
@@ -108,14 +106,13 @@ public class Conjunto<T> {
 
     public Conjunto<T> interset(Conjunto<T> inter) {
         Conjunto<T> intersecao = new Conjunto<>();
-        for (int i = 0; i < cont; i++) {
+        for (int i = 0; i < counter; i++) {
             for (int k = 0; k < inter.size(); k++) {
-                if (numeros[i] == inter.numeros[k]) {
-                    intersecao.insert(numeros[i]);
+                if (elements[i] == inter.elements[k]) {
+                    intersecao.insert(elements[i]);
                 }
             }
         }
         return intersecao;
-    }
-
+    }    
 }
