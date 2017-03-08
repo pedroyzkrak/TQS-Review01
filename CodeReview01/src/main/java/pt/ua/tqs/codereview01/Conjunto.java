@@ -1,14 +1,11 @@
-/**
- * 
- */
 package pt.ua.tqs.codereview01;
-
 
 
 /**
  * @author Pedro
  *
  */
+
 public class Conjunto<T> {
 	private T[] numeros;
 	private int cont;
@@ -62,10 +59,10 @@ public class Conjunto<T> {
 				numeros[k] = numeros[k + 1];
 			}
 		}
-		cont--; // o elemento mantem-se no array , s� que o contador diminui,
-				// logo, � como se n�o estivesse no array
+		cont--; 
 	}
 
+        @Override
 	public String toString() {
 		String el = "";
 		for (int i = 0; i < cont; i++) {
