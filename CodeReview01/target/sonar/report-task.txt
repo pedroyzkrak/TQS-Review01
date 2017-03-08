@@ -1,0 +1,5 @@
+projectKey=pt.ua.tqs:CodeReview01
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/pt.ua.tqs:CodeReview01
+ceTaskId=AVqucoORB2wrTYh5sSKY
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVqucoORB2wrTYh5sSKY
