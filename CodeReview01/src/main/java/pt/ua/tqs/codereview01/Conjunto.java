@@ -116,16 +116,28 @@ public class Conjunto<T> {
         return intersecao;
     }
 
+    public boolean containsConjunto(Conjunto<T> conj) {
+        for (int i = 0; i < conj.size() -1 ; i++) {
+            if (!this.contains(conj.elements[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final Conjunto<?> other = (Conjunto<?>) obj;
-        
+
         return Arrays.deepEquals(this.elements, other.elements);
     }
 
@@ -136,5 +148,4 @@ public class Conjunto<T> {
         return hash;
     }
 
-    
 }
