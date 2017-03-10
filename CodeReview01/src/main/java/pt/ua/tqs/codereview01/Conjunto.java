@@ -117,15 +117,8 @@ public class Conjunto<T> {
     }
 
     public boolean containsConjunto(Conjunto<T> conj) {
-        boolean check;
-        for (int i = 0; i < counter; i++) {
-            check = false;
-            for (int n = 0; n < conj.size() - 1; n++) {
-                if (elements[i].equals(conj.elements[n])) {
-                    check = true;
-                }
-            }
-            if (!check) {
+        for (int i = 0; i < conj.size() -1 ; i++) {
+            if (!this.contains(conj.elements[i])) {
                 return false;
             }
         }
